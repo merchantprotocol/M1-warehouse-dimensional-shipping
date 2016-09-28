@@ -1,0 +1,7 @@
+docs/mp/LICENSE.md docs/mp/LICENSE.md
+app/code/local/Innoexts/DimensionalShipping/Helper/Data.php app/code/local/Innoexts/DimensionalShipping/Helper/Data.php
+app/code/local/Innoexts/DimensionalShipping/Helper/Template.php app/code/local/Innoexts/DimensionalShipping/Helper/Template.php
+app/code/local/Innoexts/DimensionalShipping/etc/config.xml app/code/local/Innoexts/DimensionalShipping/etc/config.xml
+app/design/frontend/base/default/template/dimensionalshipping/checkout/cart/shipping.phtml app/design/frontend/base/default/template/dimensionalshipping/checkout/cart/shipping.phtml
+app/design/frontend/rwd/default/template/dimensionalshipping/checkout/cart/shipping.phtml app/design/frontend/rwd/default/template/dimensionalshipping/checkout/cart/shipping.phtml
+app/etc/modules/Innoexts_DimensionalShipping.xml app/etc/modules/Innoexts_DimensionalShipping.xml
