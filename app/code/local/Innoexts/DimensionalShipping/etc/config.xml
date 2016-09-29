@@ -32,15 +32,34 @@
         </Innoexts_DimensionalShipping>
     </modules>
     <global>
+        <blocks>
+            <innoexts_dimensionalshipping>
+                <class>Innoexts_DimensionalShipping_Block</class>
+            </innoexts_dimensionalshipping>
+        </blocks>
         <helpers>
             <innoexts_dimensionalshipping>
                 <class>Innoexts_DimensionalShipping_Helper</class>
             </innoexts_dimensionalshipping>
             <wsacommon>
                 <rewrite>
-                    <template>Innoexts_DimensionalShipping_Helper_Template</template>
+                    <template>Innoexts_DimensionalShipping_Helper_Wsacommon_Template</template>
                 </rewrite>
             </wsacommon>
+            <wsafreightcommon>
+                <rewrite>
+                    <data>Innoexts_DimensionalShipping_Helper_Wsafreightcommon_Data</data>
+                </rewrite>
+            </wsafreightcommon>
         </helpers>
     </global>
+    <frontend>
+        <layout>
+            <updates>
+                <wsafreightcommon>
+                    <file>innoexts_dimensionalshipping.xml</file>
+                </wsafreightcommon>
+            </updates>
+        </layout>
+    </frontend>
 </config>

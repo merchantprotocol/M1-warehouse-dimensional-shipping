@@ -24,15 +24,9 @@
  * @license    https://merchantprotocol.com/commercial-license/  Merchant Protocol Commercial License (MPCL 1.0)
  */
 
-class Innoexts_DimensionalShipping_Helper_Template extends Webshopapps_Wsacommon_Helper_Template
+class Innoexts_DimensionalShipping_Helper_Wsacommon_Template extends Webshopapps_Wsacommon_Helper_Template
 {
-    /**
-     * Checkout cart shipping template
-     * Based on Warehouse module
-     *
-     * @const string
-     */
-    const CHECKOUT_CART_SHIPPING_TEMPLATE = 'dimensionalshipping/checkout/cart/shipping.phtml';
+    use Innoexts_DimensionalShipping_Trait;
 
     /**
      * Return shipping estimate template
@@ -45,10 +39,14 @@ class Innoexts_DimensionalShipping_Helper_Template extends Webshopapps_Wsacommon
         /** @var string $template */
         $template = parent::cartShippingEstimate();
 
+        if (!$this->isModulesEnabled(['Webshopapps_Shipusa', 'Webshopapps_Wsalogger'])) {
+            return $template;
+        }
+
         if (Mage::helper('wsacommon')->isModuleEnabled('Webshopapps_Startrack', 'carriers/startrack/active')) {
             return $template;
         }
 
-        return self::CHECKOUT_CART_SHIPPING_TEMPLATE;
+        return Innoexts_DimensionalShipping_Helper_Data::CHECKOUT_CART_SHIPPING_TEMPLATE;
     }
 }

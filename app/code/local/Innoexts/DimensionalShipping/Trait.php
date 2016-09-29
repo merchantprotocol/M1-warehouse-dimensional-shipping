@@ -1,5 +1,4 @@
-<?xml version="1.0"?>
-<!--
+<?php
 /**
  * Merchant Protocol
  *
@@ -24,17 +23,39 @@
  * @copyright  Copyright (c) 2006-2016 Merchant Protocol LLC. and affiliates (https://merchantprotocol.com/)
  * @license    https://merchantprotocol.com/commercial-license/  Merchant Protocol Commercial License (MPCL 1.0)
  */
--->
-<config>
-    <modules>
-        <Innoexts_DimensionalShipping>
-            <active>true</active>
-            <codePool>local</codePool>
-            <depends>
-                <Innoexts_Warehouse/>
-                <Webshopapps_Wsacommon/>
-                <Webshopapps_Wsafreightcommon/>
-            </depends>
-        </Innoexts_DimensionalShipping>
-    </modules>
-</config>
+
+trait Innoexts_DimensionalShipping_Trait
+{
+    /**
+     * Check if modules is enable
+     *
+     * @param array $moduleNames
+     * @return bool
+     */
+    public function isModulesEnabled(array $moduleNames)
+    {
+        if (count($moduleNames) === 0) {
+            return false;
+        }
+
+        foreach ($moduleNames as $moduleName) {
+            $isEnabled = $this->helper()->isModuleEnabled($moduleName);
+
+            if (!$isEnabled) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Return data helper object
+     *
+     * @return Innoexts_DimensionalShipping_Helper_Data
+     */
+    public function helper()
+    {
+        return Mage::helper('innoexts_dimensionalshipping');
+    }
+}

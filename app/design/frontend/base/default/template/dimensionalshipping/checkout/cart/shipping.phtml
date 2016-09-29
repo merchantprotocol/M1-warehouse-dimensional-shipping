@@ -76,10 +76,46 @@
                         <input class="input-text validate-postcode<?php if ($this->isZipCodeRequired()):?> required-entry<?php endif;?>" type="text" id="postcode" name="estimate_postcode" value="<?php echo $this->escapeHtml($this->getEstimatePostcode()) ?>" />
                     </div>
                 </li>
+                <?php $showFreight = !$this->dontShowCommonFreight() ?>
+                <?php if ($this->helper('wsafreightcommon')->isAddressTypeOptionEnabled($showFreight)) : ?>
+                    <li>
+                        <label
+                            for="shipto_type" class="required"><?php echo $this->__('Address Type') ?></label>
+                        <div class="input-box">
+                            <?php echo $this->getShiptoTypeHtmlSelect($this->getShiptoType()) ?>
+                        </div>
+                    </li>
+                <?php endif ?>
             </ul>
-            <?php if (Mage::helper('innoexts_dimensionalshipping')->hasPackageBreakdown()) : ?>
-                <?php echo $this->__('Package Breakdown:') ?><br/>
-                <?php echo Mage::helper('shipusa')->getPackageBreakdown() ?>
+            <?php if ($showFreight) : ?>
+                <?php if ($this->helper('wsafreightcommon')->isLiftgateEnabled()) : ?>
+                    <div class="a-left input-checkbox">
+                        <input type="hidden" name="liftgate_required" value="0">
+                        <input type="checkbox" name="liftgate_required" id="liftgate_required"
+                               value="1" <?php if ($this->getLiftgateRequired()): ?> checked="checked"<?php endif; ?> />
+                        <label for="liftgate_required"><?php echo $this->__('Do you need a Liftgate?') ?></label>
+                    </div>
+                <?php endif; ?>
+                <?php if ($this->helper('wsafreightcommon')->isNotifyOptionEnabled() && !$this->helper('wsafreightcommon')->isNotifyRequired()): ?>
+                    <div class="a-left input-checkbox">
+                        <input type="hidden" name="notify_required" value="0">
+                        <input type="checkbox" name="notify_required" id="notify_required"
+                               value="1" <?php if ($this->getNotifyRequired()): ?> checked="checked"<?php endif; ?> />
+                        <label for="notify_required"><?php echo $this->__('Scheduled Appointment?') ?></label>
+                    </div>
+                <?php endif ?>
+                <?php if ($this->helper('wsafreightcommon')->isInsideDeliveryEnabled()): ?>
+                    <div class="a-left input-checkbox">
+                        <input type="checkbox" name="inside_delivery" id="inside_delivery"
+                               value="1" <?php if ($this->getInsideDelivery()): ?> checked="checked"<?php endif; ?> />
+                        <label for="inside_delivery"><?php echo $this->__('Inside Delivery?') ?></label>
+                    </div>
+                <?php endif ?>
+            <?php else : ?>
+                <?php if (Mage::helper('innoexts_dimensionalshipping')->hasPackageBreakdown()) : ?>
+                    <?php echo $this->__('Package Breakdown:') ?><br/>
+                    <?php echo Mage::helper('shipusa')->getPackageBreakdown() ?>
+                <?php endif ?>
             <?php endif ?>
             <div class="buttons-set">
                 <button type="button" title="<?php echo $this->__('Get a Quote') ?>" onclick="coShippingMethodForm.submit()" class="button"><span><span><?php echo $this->__('Get a Quote') ?></span></span></button>

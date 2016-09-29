@@ -26,8 +26,18 @@
 
 class Innoexts_DimensionalShipping_Helper_Data extends Mage_Core_Helper_Abstract
 {
+    use Innoexts_DimensionalShipping_Trait;
+
     /**
-     * Return package breakdown from Webshopapps Dimensional Shipping
+     * Checkout cart shipping template
+     * Based on Warehouse module
+     *
+     * @const string
+     */
+    const CHECKOUT_CART_SHIPPING_TEMPLATE = 'dimensionalshipping/checkout/cart/shipping.phtml';
+
+    /**
+     * Check if ship USA module is enabled
      *
      * @return bool
      */
@@ -42,5 +52,29 @@ class Innoexts_DimensionalShipping_Helper_Data extends Mage_Core_Helper_Abstract
         }
 
         return true;
+    }
+
+    /**
+     * Check if common freight module is enabled
+     *
+     * @return bool
+     */
+    public function hasCommonFreight()
+    {
+        return $this->isModulesEnabled([
+            'Webshopapps_Wsafreightcommon',
+            'Webshopapps_Estesfreight',
+            'Webshopapps_Wsaupsfreight'
+        ]);
+    }
+
+    /**
+     * Return checkout cart shipping template
+     *
+     * @return string
+     */
+    public function getShippingTemplate()
+    {
+        return self::CHECKOUT_CART_SHIPPING_TEMPLATE;
     }
 }
