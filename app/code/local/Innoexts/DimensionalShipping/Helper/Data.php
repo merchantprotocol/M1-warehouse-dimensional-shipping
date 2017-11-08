@@ -61,11 +61,11 @@ class Innoexts_DimensionalShipping_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function hasCommonFreight()
     {
-        return $this->isModulesEnabled([
+        return $this->isModulesEnabled(array(
             'Webshopapps_Wsafreightcommon',
             'Webshopapps_Estesfreight',
             'Webshopapps_Wsaupsfreight'
-        ]);
+        ));
     }
 
     /**

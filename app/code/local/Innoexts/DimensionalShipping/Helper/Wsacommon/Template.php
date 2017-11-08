@@ -39,7 +39,7 @@ class Innoexts_DimensionalShipping_Helper_Wsacommon_Template extends Webshopapps
         /** @var string $template */
         $template = parent::cartShippingEstimate();
 
-        if (!$this->isModulesEnabled(['Webshopapps_Shipusa', 'Webshopapps_Wsalogger'])) {
+        if (!$this->isModulesEnabled(array('Webshopapps_Shipusa', 'Webshopapps_Wsalogger'))) {
             return $template;
         }
 
