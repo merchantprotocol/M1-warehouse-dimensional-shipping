@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildpath>
+	<buildpathentry kind="src" path="app/code/local/MP/DimensionalShipping"/>
+	<buildpathentry kind="src" path="app/design/frontend/base/default/template/dimensionalshipping/checkout/cart"/>
+	<buildpathentry kind="src" path="app/design/frontend/rwd/default/template/dimensionalshipping/checkout/cart"/>
+	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
+</buildpath>
